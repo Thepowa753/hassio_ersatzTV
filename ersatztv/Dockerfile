@@ -1,14 +1,14 @@
 FROM ghcr.io/ersatztv/ersatztv:latest
 
-# Installa jq e i pacchetti per la lingua (locales)
+# Installa jq e il pacchetto delle lingue (locales)
 RUN apt-get update \
     && apt-get install -y --no-install-recommends jq locales \
     && rm -rf /var/lib/apt/lists/*
 
-# Genera e imposta il locale en_US.UTF-8 per risolvere i decimali in FFmpeg
-RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
-    dpkg-reconfigure --frontend=noninteractive locales
+# Abilita l'inglese americano e lo compila nel sistema
+RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && locale-gen
 
+# Imposta le variabili d'ambiente direttamente a livello di immagine
 ENV LANG=en_US.UTF-8
 ENV LC_ALL=en_US.UTF-8
 
