@@ -3,6 +3,7 @@ set -e
 
 OPTIONS_FILE="/data/options.json"
 
+# Read configuration from Home Assistant add-on options
 if [ -f "${OPTIONS_FILE}" ]; then
     BASE_FOLDER=$(jq -r '.base_folder // "/media"' "${OPTIONS_FILE}")
 else
@@ -16,8 +17,8 @@ export ETV_CONFIG_FOLDER="${BASE_FOLDER}"
 export ETV_TRANSCODE_FOLDER="/transcode"
 export ETV_DISABLE_VULKAN=1
 
-# Correct FFMPEG
-export LANG="C"
-export LC_ALL="C"
+# Forza l'inglese a livello di processo
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
 
 exec /app/ErsatzTV
