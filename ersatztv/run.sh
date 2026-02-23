@@ -17,4 +17,8 @@ export ETV_CONFIG_FOLDER="${BASE_FOLDER}"
 export ETV_TRANSCODE_FOLDER="/transcode"
 export ETV_DISABLE_VULKAN=1
 
+# --- FIX FFMPEG ---
+export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
+export LANG="en_US.UTF-8"
+
 exec /app/ErsatzTV
